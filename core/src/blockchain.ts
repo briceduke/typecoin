@@ -1,5 +1,6 @@
 import { SHA256 as SHA } from "crypto-js";
 
+import { Block } from "./Block";
 /*
  * Calculate the block hash with SHA256
  * Using the previous hash to hash a block is not the best,
