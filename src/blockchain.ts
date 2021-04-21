@@ -1,7 +1,7 @@
 import { SHA256 as SHA } from "crypto-js";
 
 import { Block } from "./Block";
-
+import { broadcastLatest } from "./p2p";
 /*
  * Calculate the block hash with SHA256
  * Using the previous hash to hash a block is not the best,
@@ -59,7 +59,7 @@ const generateNext = (data: string) => {
     nextTimestamp
   );
   addBlock(newBlock);
-  //   broadcastNew()
+  broadcastLatest();
   return newBlock;
 };
 
@@ -134,7 +134,7 @@ const getChain = (): Block[] => blockchain;
 const replaceChain = (newBlocks: Block[]) => {
   if (isValidChain(newBlocks) && newBlocks.length > getChain().length) {
     blockchain = newBlocks;
-    // broadcastNew()
+    broadcastLatest();
   }
 };
 
